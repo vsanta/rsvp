@@ -8,4 +8,18 @@ ActiveAdmin.register Invitee do
 #
 # end
   permit_params :name, :email, :group, :group_id
+
+  form do |f|
+    f.inputs do
+      f.input :group_id,
+              as: :search_select, url: admin_groups_path,
+              fields: %i[name id],
+              display_name: "name", minimum_input_length: 2,
+              order_by: "id_asc"
+      f.input :name, as: :string
+      f.input :email, as: :email
+
+    end
+    f.actions
+  end
 end
