@@ -1,15 +1,10 @@
 ActiveAdmin.register Group do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
-
+  batch_action :invite_all do |ids|
+    batch_action_collection.find(ids).each do |group|
+      group.invitees.each do |invitee|
+        InviteMailer.with(invitee: invitee).invite.deliver_later
+      end
+    end
+    redirect_to collection_path, alert: "Invite sent to #{ids.length} groups."
+  end
 end

@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  active_admin:
+    batch_actions:
+      labels:
+        invite_all: "Invite all"
