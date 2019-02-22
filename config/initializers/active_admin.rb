@@ -5,6 +5,12 @@ ActiveAdmin.setup do |config|
   # for each of the active admin pages.
   #
   config.site_title = "Rsvp"
+  config.before_action do
+    authenticate_or_request_with_http_basic("Whatever") do |name, password|
+      name == Rails.application.credentials.basic_auth[:username] && password == Rails.application.credentials.basic_auth[:password]
+    end
+  end
+
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
