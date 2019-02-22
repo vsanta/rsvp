@@ -1,4 +1,6 @@
 ActiveAdmin.register Group do
+  permit_params :name
+
   batch_action :invite_all do |ids|
     batch_action_collection.find(ids).each do |group|
       group.invitees.each do |invitee|
