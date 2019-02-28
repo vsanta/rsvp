@@ -9,8 +9,12 @@
 
       <% group.invitees.each do |invitee| %>
         <li class="list-group-item">
-          <%= check_box_tag("invitee_rsvp[]", invitee.code) %>
-          <%= label_tag(:invitee_rsvp, invitee.name, class: "form-check-label") %>
+          <% if invitee.rsvp %>
+            <%= check_box_tag("invitee_rsvp[]", invitee.code, :checked)%>
+        <%else %>
+            <%= check_box_tag("invitee_rsvp[]", invitee.code) %>
+        <%end %>
+          <%= label_tag(:invitee_rsvp_, invitee.name, class: "form-check-label") %>
         </li>
       <% end %>
     </div>
