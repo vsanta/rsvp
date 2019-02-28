@@ -1,0 +1,21 @@
+<div class="col">
+  <h3>Confirme a presenca da familia <%= group.name %></h3>
+  <ul class="list-group list-group-flush">
+  <%= form_tag(confirma_path, method: "post") do %>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :group_id, group.id %>
+    <div class="form-group">
+
+      <% group.invitees.each do |invitee| %>
+        <li class="list-group-item">
+          <%= check_box_tag("invitee_rsvp[]", invitee.code) %>
+          <%= label_tag(:invitee_rsvp, invitee.name, class: "form-check-label") %>
+        </li>
+      <% end %>
+    </div>
+      <div>
+        <%= button_tag("Confirmar", class: "btn btn-info", type: "submit")%>
+      </div>
+  <% end %>
+  </ul>
+</div>
