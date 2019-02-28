@@ -6,7 +6,7 @@ class InviteesController < ApplicationController
     if @invitee
       render "invitee"
     else
-      render json: {"Not Found":"404"}
+      head(:not_found)
     end
   end
 end
