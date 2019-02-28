@@ -1,16 +1,32 @@
-<div style="color: #333;   margin: auto; width: 50%; padding: 10px;">
+<div class="col">
   <div>
-    <h1>Ola, <%=@invitee.name %>!</h1>
+    <h1>Ola, <%= @invitee.name %>!</h1>
   </div>
-  <div style="background-image:url('http://localhost:3000/invite.jpg'); width: 100%; height: 500px; background-repeat: no-repeat; background-size: contain;">
+  <img src="/invite.jpg" class="img-fluid" alt="Olivia convida para o primeiro aniversario.
+    Domingo, 26 de Maio as 10 da manha ate as 14h. Casa de festa Pitanga Pitangueira na
+    Rua Paulino Fernandes, 36.">
+  <div class="row">
+    <div class="col">
+      <%= render partial: "confirm_group", locals: {group: @invitee.group} %>
+
+    </div>
+
   </div>
-  <div>
-    <%= render partial: "contacts" %>
+  <div class="row">
+    <div class="col">
+      <%= render partial: "gifts" %>
+    </div>
+
   </div>
-  <div>
-    <%= render partial: "gifts" %>
+  <div class="row">
+    <div class="col">
+      <%= render partial: "location" %>
+    </div>
+    <div class="col">
+      <%= render partial: "contacts" %>
+
+    </div>
+
   </div>
-  <div>
-    <%= render partial: "location" %>
-  </div>
+
 </div>

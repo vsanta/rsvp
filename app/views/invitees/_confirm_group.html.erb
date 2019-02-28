@@ -1,6 +1,7 @@
-<div class="col">
-  <h3>Confirme a presenca da familia <%= group.name %></h3>
-  <ul class="list-group list-group-flush">
+<div>
+  <h2>Confirme a presenca da familia <%= group.name %></h2>
+
+  <ul class="list-group" style="width: 100%">
   <%= form_tag(confirma_path, method: "post") do %>
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <%= hidden_field_tag :group_id, group.id %>

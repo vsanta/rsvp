@@ -1,13 +1,21 @@
-<h3>Contatos:</h3>
-<ul>
-  <li>Vanessa Sant'Anna:</li>
-    <ul>
-      <li>Email: <%=Rails.application.credentials.admin_info[:email_vanessa]%></li>
-      <li>Cel: <%=Rails.application.credentials.admin_info[:cel_vanessa]%></li>
-    </ul>
-  <li>Jesusmar Lima:</li>
-    <ul>
-      <li>Email: <%=Rails.application.credentials.admin_info[:email_jesus]%></li>
-      <li>Cel: <%=Rails.application.credentials.admin_info[:cel_jesus]%></li>
-    </ul>
-</ul>
+
+<h2>Contatos</h2>
+    <div class="card ">
+      <div class="card-body">
+        <h5 class="card-title">Vanessa Sant'Anna</h5>
+        <p class="card-text">
+          Email: <a href="mailto:<%= Rails.application.credentials.admin_info[:email_vanessa] %>"><%= Rails.application.credentials.admin_info[:email_vanessa] %></a></p>
+        <p class="card-text">
+          Cel: <%= Rails.application.credentials.admin_info[:cel_vanessa] %></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Jesusmar Lima</h5>
+        Email: <a href="mailto:<%= Rails.application.credentials.admin_info[:email_jesus] %>"><%= Rails.application.credentials.admin_info[:email_jesus] %></a></p>
+
+        <p class="card-text"> Cel: <%= Rails.application.credentials.admin_info[:cel_jesus] %></p>
+      </div>
+    </div>
+
+
