@@ -12,12 +12,12 @@ ActiveAdmin.register Invitee do
 index do
     column :name
     column :email
-    column :group
+    column :group, sortable: :group_id
     column :rsvp
     column :is_a_child
     column :age
     column "Link" do |a|
-      "http://#{Rails.application.credentials[:invite_domain]}/#{a.code}"
+      a.email? ? "http://#{Rails.application.credentials[:invite_domain]}/#{a.code}" : ""
     end
     actions
   end

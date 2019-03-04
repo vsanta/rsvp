@@ -1,7 +1,6 @@
 class RsvpController < ApplicationController
   def create
     invitees_group = rsvp_params.values[0]
-    byebug
     invitees_group.keys.each do |key|
       invitee = Invitee.find(key)
       invitee.update(invitees_group[key])
