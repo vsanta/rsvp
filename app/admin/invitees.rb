@@ -7,7 +7,22 @@ ActiveAdmin.register Invitee do
 # or
 #
 # end
-  permit_params :name, :email, :group, :group_id
+#
+#
+index do
+    column :name
+    column :email
+    column :group
+    column :rsvp
+    column :is_a_child
+    column :age
+    column "Link" do |a|
+      "http://#{Rails.application.credentials[:invite_domain]}/#{a.code}"
+    end
+    actions
+  end
+
+  permit_params :name, :email, :group, :group_id, :is_a_child, :age
 
   form do |f|
     f.inputs do
