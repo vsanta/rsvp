@@ -18,7 +18,9 @@ ActiveAdmin.register Invitee do
               order_by: "id_asc"
       f.input :name, as: :string
       f.input :email, as: :email
-
+      f.input :rsvp
+      f.input :is_a_child
+      f.input :age
     end
     f.actions
   end
