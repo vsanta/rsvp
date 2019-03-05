@@ -2,25 +2,33 @@
   <h2>Confirme a presenca da familia <%= group.name %></h2>
 
   <ul class="list-group" style="width: 100%">
-  <%= form_tag(confirma_path, method: "post") do %>
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <%= hidden_field_tag :group_id, group.id %>
-    <div class="form-group">
+    <%= form_tag(confirma_path, method: "post") do %>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%= hidden_field_tag :group_id, group.id %>
+      <div class="form-group">
 
-      <% group.invitees.each do |invitee| %>
-        <li class="list-group-item">
-          <% if invitee.rsvp %>
-            <%= check_box_tag("invitee_rsvp[]", invitee.code, :checked)%>
-        <%else %>
-            <%= check_box_tag("invitee_rsvp[]", invitee.code) %>
-        <%end %>
-          <%= label_tag(:invitee_rsvp_, invitee.name, class: "form-check-label") %>
-        </li>
-      <% end %>
-    </div>
-      <div>
-        <%= button_tag("Confirmar", class: "btn btn-info", type: "submit")%>
+        <% group.invitees.each do |invitee| %>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col">
+                <%= select_tag("group[invitee[#{invitee.id}]][rsvp]",
+                               options_for_select([['Selecione',nil], ['Sim', true], ['Näo', false]],
+                                                  invitee.rsvp.nil? ? nil : invitee.rsvp  )) %>
+                <%= label_tag(:invitee_rsvp_, invitee.name, class: "form-check-label") %>
+              </div>
+              <div class="col">
+                <%-if (invitee.is_a_child) %>
+                <%= label_tag("invitee_age", "Idade da criança",class: "form-check-label invitee_age") %>
+                  <%= number_field("group[invitee[#{invitee.id}]]", :age, in: 1..17, value: invitee.age)  %>
+                  <% end%>
+                </div>
+            </div>
+          </li>
+        <% end %>
       </div>
-  <% end %>
+      <div>
+        <%= button_tag("Confirmar", class: "btn btn-info", type: "submit") %>
+      </div>
+    <% end %>
   </ul>
 </div>

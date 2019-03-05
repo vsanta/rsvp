@@ -1,13 +1,16 @@
 class RsvpController < ApplicationController
   def create
-    invitees_code = params[:invitee_rsvp]
-    group_id = params[:group_id]
-
-    Invitee.where(group_id: group_id).update_all(rsvp: false)
-    invitees = Invitee.where(code: invitees_code)
-    invitees.update_all(rsvp: true)
-    Metric.where(invitee_id: invitees.all.map(&:id)).update_all(responded: true)
-
+    invitees_group = rsvp_params.values[0]
+    invitees_group.keys.each do |key|
+      invitee = Invitee.find(key)
+      invitee.update(invitees_group[key])
+      Metric.where(invitee_id:invitee.id).update_all(responded: true) unless invitee.rsvp.nil?
+    end
     render "thankyou"
   end
+
+  def rsvp_params
+    params.require(:group).permit(invitee:[:rsvp,:age])
+  end
 end
+

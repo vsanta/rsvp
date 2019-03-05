@@ -7,7 +7,21 @@ ActiveAdmin.register Invitee do
 # or
 #
 # end
-  permit_params :name, :email, :group, :group_id
+#
+index do
+    column :name
+    column :email
+    column :group, sortable: :group_id
+    column :rsvp
+    column :is_a_child
+    column :age
+    column "Link" do |a|
+      a.email? ? "#{Rails.application.credentials[:invite_domain]}#{a.code}" : ""
+    end
+    actions
+  end
+
+  permit_params :name, :email, :group, :group_id, :is_a_child, :age
 
   form do |f|
     f.inputs do
@@ -18,7 +32,9 @@ ActiveAdmin.register Invitee do
               order_by: "id_asc"
       f.input :name, as: :string
       f.input :email, as: :email
-
+      f.input :rsvp
+      f.input :is_a_child
+      f.input :age
     end
     f.actions
   end
