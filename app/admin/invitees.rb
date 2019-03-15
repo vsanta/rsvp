@@ -10,6 +10,7 @@ ActiveAdmin.register Invitee do
 #
 index do
     column :name
+    column :nickname
     column :email
     column :group, sortable: :group_id
     column :rsvp
@@ -31,6 +32,7 @@ index do
               display_name: "name", minimum_input_length: 2,
               order_by: "id_asc"
       f.input :name, as: :string
+      f.input :nickname, as: :string
       f.input :email, as: :email
       f.input :rsvp
       f.input :is_a_child

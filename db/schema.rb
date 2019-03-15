@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_01_011111) do
+ActiveRecord::Schema.define(version: 2019_03_15_021258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2019_03_01_011111) do
     t.boolean "rsvp"
     t.boolean "is_a_child", default: false
     t.integer "age"
+    t.string "nickname"
   end
 
   create_table "metrics", force: :cascade do |t|

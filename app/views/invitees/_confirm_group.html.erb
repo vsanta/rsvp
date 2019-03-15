@@ -1,5 +1,5 @@
 <div>
-  <h2>Confirme a presenca da familia <%= group.name %></h2>
+  <h2>Confirme <%= group.invitees.length > 1 ? "a presenca da familia #{group.name}" : "sua presença " %></h2>
 
   <ul class="list-group" style="width: 100%">
     <%= form_tag(confirma_path, method: "post") do %>
