@@ -22,7 +22,7 @@ index do
     actions
   end
 
-  permit_params :name, :email, :group, :group_id, :is_a_child, :age
+  permit_params :name, :email, :group, :group_id, :is_a_child, :age, :nickname
 
   form do |f|
     f.inputs do
