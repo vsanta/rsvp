@@ -17,7 +17,7 @@ index do
     column :is_a_child
     column :age
     column "Link" do |a|
-      a.email? ? "#{Rails.application.credentials[:invite_domain]}#{a.code}" : ""
+      "#{Rails.application.credentials[:invite_domain]}#{a.code}"
     end
     actions
   end

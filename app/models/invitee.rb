@@ -5,6 +5,6 @@ class Invitee < ApplicationRecord
   before_create :generate_code
 
   def generate_code
-    self.code = SecureRandom.urlsafe_base64 unless email.nil?
+    self.code = SecureRandom.urlsafe_base64
   end
 end
